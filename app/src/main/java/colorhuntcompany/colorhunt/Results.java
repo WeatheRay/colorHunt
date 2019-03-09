@@ -2,11 +2,16 @@ package colorhuntcompany.colorhunt;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Timer;
 
 import static android.graphics.Color.blue;
 import static android.graphics.Color.green;
@@ -20,9 +25,12 @@ public class Results extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
         //TODO: create and set global variable targetcolor
-        String picturePath=getFilesDir().toString()+"image.jpeg";
-        int target =0;
-        ProcessResult(target,ColorSearch(BitmapFactory.decodeFile(picturePath)));
+        String picturePath = getFilesDir().toString() + "image.jpeg";
+
+        int target = BitmapFactory.decodeFile(getFilesDir()+"target.jpeg").getPixel(0,0);
+
+        ProcessResult(target, ColorSearch(BitmapFactory.decodeFile(picturePath)));
+
     }
 
     public ArrayList<Integer> ColorSearch(Bitmap orig)
@@ -66,7 +74,39 @@ public class Results extends AppCompatActivity {
                 bestIndex = i;
             }
         }
+        //TODO: remove the hard coding here
+        final int bestf = 150;
         //TODO: Write a pass fail condition for a color being too far away or not
+        TextView test = findViewById(R.id.textView8);
+        test.setVisibility(View.INVISIBLE);
+
+        CountDownTimer t = new CountDownTimer(100*best/5, 100) {
+            public int counted = 0;
+            @Override
+            public void onTick(long millisUntilFinished) {
+                ProgressBar p = findViewById(R.id.progressBar);
+                if(bestf-counted >=5)
+                {
+
+                    p.setProgress(p.getProgress()+5);
+                    counted+=5;
+                }
+                else {
+                    p.setProgress(p.getProgress() + bestf - counted);
+                    counted = bestf;
+                }
+                TextView t = findViewById(R.id.textView7);
+                t.setText(counted+"/1000");
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        }.start();
+
+
+
 
     }
 }

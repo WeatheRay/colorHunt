@@ -47,7 +47,7 @@ public class Landing extends AppCompatActivity {
     }
     public void clickStart(View name)
     {
-        startActivity(new Intent(Landing.this, MainActivity.class));
+        startActivity(new Intent(Landing.this, Results.class));
     }
     public void compress( Bitmap bitmap)
     {
