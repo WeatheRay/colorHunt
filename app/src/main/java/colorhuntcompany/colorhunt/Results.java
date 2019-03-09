@@ -1,5 +1,6 @@
 package colorhuntcompany.colorhunt;
 
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.CountDownTimer;
