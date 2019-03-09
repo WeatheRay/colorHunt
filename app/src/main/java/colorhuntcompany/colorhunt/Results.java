@@ -30,10 +30,9 @@ public class Results extends AppCompatActivity {
         String picturePath = getFilesDir().toString() + "image.jpeg";
         ImageView v = findViewById(R.id.target_imageview);
         v.setImageBitmap(BitmapFactory.decodeFile(getFilesDir()+"target.jpeg"));
-        //int target = BitmapFactory.decodeFile(getFilesDir()+"target.jpeg").getPixel(0,0);
-        int target = 0;
-        //v =  findViewById(R.id.closest_imageview);
-        //v.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+        int target = BitmapFactory.decodeFile(getFilesDir()+"target.jpeg").getPixel(0,0);
+        v =  findViewById(R.id.closest_imageview);
+        v.setImageBitmap(BitmapFactory.decodeFile(picturePath));
         ProcessResult(target, ColorSearch(BitmapFactory.decodeFile(picturePath)));
 
     }
@@ -80,7 +79,7 @@ public class Results extends AppCompatActivity {
             }
         }
         //TODO: remove the hard coding here
-        final int bestf = 725;
+        final int bestf = best;
         //TODO: Write a pass fail condition for a color being too far away or not
         final int SPEED = 100;
         final int INCREMENT = 20;

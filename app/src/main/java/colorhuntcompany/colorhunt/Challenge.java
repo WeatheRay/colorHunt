@@ -102,7 +102,7 @@ public class Challenge extends AppCompatActivity {
         image.eraseColor(rgb(randomNum.nextInt(max-min),randomNum.nextInt(max-min),randomNum.nextInt(max-min)));
         ImageView mImageView=findViewById(R.id.mImageView);
         mImageView.setImageBitmap(image);
-        compress(image, "target.jpeg");
+        compress(image, "target");
     }
 
 }
