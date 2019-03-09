@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -26,9 +27,12 @@ public class Results extends AppCompatActivity {
         setContentView(R.layout.activity_results);
         //TODO: create and set global variable targetcolor
         String picturePath = getFilesDir().toString() + "image.jpeg";
-
-        int target = BitmapFactory.decodeFile(getFilesDir()+"target.jpeg").getPixel(0,0);
-
+        ImageView v = findViewById(R.id.target_imageview);
+        v.setImageBitmap(BitmapFactory.decodeFile(getFilesDir()+"target.jpeg"));
+        //int target = BitmapFactory.decodeFile(getFilesDir()+"target.jpeg").getPixel(0,0);
+        int target = 0;
+        //v =  findViewById(R.id.closest_imageview);
+        //v.setImageBitmap(BitmapFactory.decodeFile(picturePath));
         ProcessResult(target, ColorSearch(BitmapFactory.decodeFile(picturePath)));
 
     }
@@ -60,7 +64,7 @@ public class Results extends AppCompatActivity {
             int R=red(color);
             int G = green(color);
             int B = blue(color);
-            int score = (Math.abs(targetR-R)+Math.abs(targetB-B)+Math.abs(target));
+            int score = (Math.abs(targetR-R)+Math.abs(targetB-B)+Math.abs(targetG-G));
             scores.add((765-score)*1000/765);
         }
         Log.i("SCORES", scores.toString());
@@ -75,32 +79,41 @@ public class Results extends AppCompatActivity {
             }
         }
         //TODO: remove the hard coding here
-        final int bestf = 150;
+        final int bestf = 725;
         //TODO: Write a pass fail condition for a color being too far away or not
-        TextView test = findViewById(R.id.textView8);
-        test.setVisibility(View.INVISIBLE);
-
-        CountDownTimer t = new CountDownTimer(100*best/5, 100) {
+        final int SPEED = 100;
+        final int INCREMENT = 20;
+        CountDownTimer t = new CountDownTimer(SPEED*best/INCREMENT, SPEED) {
             public int counted = 0;
             @Override
             public void onTick(long millisUntilFinished) {
+
                 ProgressBar p = findViewById(R.id.progressBar);
-                if(bestf-counted >=5)
+                TextView t = findViewById(R.id.textView7);
+                if(bestf-counted >=INCREMENT)
                 {
 
-                    p.setProgress(p.getProgress()+5);
-                    counted+=5;
+                    p.setProgress(p.getProgress()+INCREMENT);
+                    counted+=INCREMENT;
+                    t.setText(counted+"/1000");
                 }
-                else {
-                    p.setProgress(p.getProgress() + bestf - counted);
-                    counted = bestf;
-                }
-                TextView t = findViewById(R.id.textView7);
-                t.setText(counted+"/1000");
+
+
             }
 
             @Override
             public void onFinish() {
+                ProgressBar p = findViewById(R.id.progressBar);
+                    p.setProgress(bestf);
+                    counted = bestf;
+
+                TextView t = findViewById(R.id.textView7);
+                t.setText(counted+"/1000");
+
+
+
+
+
 
             }
         }.start();
