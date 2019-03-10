@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
                 /*
                 Uri photoURI = FileProvider.getUriForFile(this,
                         getApplicationContext().getPackageName() + ".provider",
