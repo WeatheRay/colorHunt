@@ -202,9 +202,9 @@ public class Results extends AppCompatActivity {
                         FileWriter fr = null;
                         try {
                             archivo = new File(getFilesDir().toString()+"/stats");
-                            fr = new FileWriter(archivo, true);
+                            fr = new FileWriter(archivo, false);
 
-                                fr.write(parts.toString());
+                                fr.write(parts[0]+","+parts[1]+","+parts[2]+","+parts[3]);
 
                         } catch (Exception e) {
                             System.out.println("Error al escribir");
