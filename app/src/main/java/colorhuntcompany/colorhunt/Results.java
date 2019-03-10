@@ -3,8 +3,10 @@ package colorhuntcompany.colorhunt;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -49,7 +51,6 @@ public class Results extends AppCompatActivity {
         Log.i("challenge num"," "+challengeNumber);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
-        //TODO: create and set global variable targetcolor
         String picturePath = getFilesDir().toString() + "image.jpeg";
         ImageView v = findViewById(R.id.target_imageview);
         v.setImageBitmap(BitmapFactory.decodeFile(getFilesDir()+"target.jpeg"));
@@ -110,9 +111,7 @@ public class Results extends AppCompatActivity {
         v2.setImageBitmap(b2);
         findViewById(R.id.closest_imageview).setVisibility(View.VISIBLE);
         findViewById(R.id.textView9).setVisibility(View.VISIBLE);
-        //TODO: remove the hard coding here
         final int bestf = best;
-        //TODO: Write a pass fail condition for a color being too far away or not
         final int SPEED = 100;
         final int INCREMENT = 20;
         CountDownTimer t = new CountDownTimer(SPEED*best/INCREMENT, SPEED) {
@@ -129,8 +128,18 @@ public class Results extends AppCompatActivity {
                     counted+=INCREMENT;
                     t.setText(counted+"/1000");
                 }
-
-
+                if(counted < 400)
+                {
+                    p.setProgressTintList(ColorStateList.valueOf(Color.RED));
+                }
+                else if(counted <700)
+                {
+                    p.setProgressTintList(ColorStateList.valueOf(Color.YELLOW));
+                }
+                else
+                {
+                    p.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
+                }
             }
 
             @Override

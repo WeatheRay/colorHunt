@@ -39,7 +39,7 @@
 
     <TextView
         android:id="@+id/perfects_testview"
-        android:layout_width="98dp"
+        android:layout_width="55dp"
         android:layout_height="28dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
@@ -48,14 +48,14 @@
         android:textAlignment="textEnd"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintHorizontal_bias="0.698"
         app:layout_constraintStart_toEndOf="@+id/textView14"
         app:layout_constraintTop_toBottomOf="@+id/points_testview" />
 
     <TextView
         android:id="@+id/textView14"
-        android:layout_width="221dp"
-        android:layout_height="33dp"
+        android:layout_width="232dp"
+        android:layout_height="59dp"
         android:layout_marginTop="20dp"
         android:text="Perfect Color Matches:"
         android:textSize="24sp"
