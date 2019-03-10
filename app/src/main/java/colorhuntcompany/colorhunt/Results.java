@@ -49,6 +49,9 @@ public class Results extends AppCompatActivity {
         ProcessResult(target, ColorSearch(BitmapFactory.decodeFile(picturePath)));
 
     }
+    public void statsButton(View v){
+        startActivity(new Intent(Results.this, Achievements.class));
+    }
 
     public ArrayList<Integer> ColorSearch(Bitmap orig)
     {
