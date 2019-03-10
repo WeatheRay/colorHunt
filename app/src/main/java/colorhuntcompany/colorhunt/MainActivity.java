@@ -46,13 +46,15 @@ public class MainActivity extends AppCompatActivity {
         try {
             if (file.createNewFile()) {
                 System.out.println("New Text File is created!");
+                FileWriter writer = new FileWriter(file);
+                writer.write("0,0,0,0");
+                writer.close();
             } else {
                 System.out.println("File already exists.");
             }
             //Write Content
-            FileWriter writer = new FileWriter(file);
-            writer.write("0,0,0,0");
-            writer.close();
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }

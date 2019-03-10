@@ -180,7 +180,7 @@ public class Results extends AppCompatActivity {
                         } catch (FileNotFoundException e) {
                             e.printStackTrace();
                         }
-                        String past="0,0,0,0";
+                        String past="";
                         try {
                             past = in.readLine();
                         } catch (IOException e) {

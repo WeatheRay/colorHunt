@@ -22,14 +22,14 @@ public class Achievements extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_achievements);
-        String test = getFilesDir().toString()+"stats";
+        String test = getFilesDir().toString()+"/stats";
         BufferedReader in = null;
         try {
             in = new BufferedReader(new FileReader(test));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        String past="0,0,0,0";
+        String past="";
         try {
             past = in.readLine();
         } catch (IOException e) {
