@@ -1,6 +1,5 @@
 package colorhuntcompany.colorhunt;
 
-
 import android.content.pm.ActivityInfo;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -29,7 +28,6 @@ public class Results extends AppCompatActivity {
     static int challengeScore = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Challenge.chal.finish();
 
         challengeNumber = challengeNumber%6;
