@@ -1,6 +1,7 @@
 package colorhuntcompany.colorhunt;
 
 
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.CountDownTimer;
@@ -24,6 +25,7 @@ public class Results extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Challenge.chal.finish();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);

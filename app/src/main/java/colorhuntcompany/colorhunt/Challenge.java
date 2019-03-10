@@ -3,6 +3,7 @@ package colorhuntcompany.colorhunt;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
@@ -28,6 +29,7 @@ import static android.graphics.Color.rgb;
 
 public class Challenge extends AppCompatActivity {
     public static Activity chal;
+    static int loaded=0;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     public void cameraButton(View v){
         dispatchTakePictureIntent(1);
@@ -72,6 +74,7 @@ public class Challenge extends AppCompatActivity {
     //called after camera intent finished taking photo
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent   intent) {
+        loaded=1;
         handleSmallCameraPhoto(intent);
         Bitmap mImageBitmap = BitmapFactory.decodeFile(getFilesDir().toString()+"image.jpeg");
         ImageView mImageView=findViewById(R.id.mImageView);
@@ -90,6 +93,7 @@ public class Challenge extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         MainActivity.fa.finish();
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         chal = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_challenge);
@@ -99,11 +103,19 @@ public class Challenge extends AppCompatActivity {
         int max = 255;
         int min = 0;
         // create instance of Random class
-        Random randomNum = new Random();
-        image.eraseColor(rgb(randomNum.nextInt(max-min),randomNum.nextInt(max-min),randomNum.nextInt(max-min)));
-        ImageView mImageView=findViewById(R.id.mImageView);
-        mImageView.setImageBitmap(image);
-        compress(image, "target");
+        if(loaded==0) {
+            Random randomNum = new Random();
+            image.eraseColor(rgb(randomNum.nextInt(max - min), randomNum.nextInt(max - min), randomNum.nextInt(max - min)));
+            ImageView mImageView = findViewById(R.id.mImageView);
+            mImageView.setImageBitmap(image);
+            compress(image, "target");
+            loaded = 1;
+        }
+        else {
+            ImageView v = findViewById(R.id.mImageView);
+            v.setImageBitmap(BitmapFactory.decodeFile(getFilesDir() + "target.jpeg"));
+        }
+
     }
 
 }
