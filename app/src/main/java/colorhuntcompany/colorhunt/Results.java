@@ -143,7 +143,8 @@ public class Results extends AppCompatActivity {
                         ta = findViewById(R.id.textView13);
                         ta.setVisibility(View.VISIBLE);
                         ta.setText(""+challengeScore);
-                        findViewById(R.id.textView12);
+                        findViewById(R.id.textView12).setVisibility(View.VISIBLE);
+                        findViewById(R.id.pass_fail_textview).setVisibility(View.INVISIBLE);
                         if (challengeNumber!=5)
                         {
                             findViewById(R.id.next_color_button).setVisibility(View.VISIBLE);
