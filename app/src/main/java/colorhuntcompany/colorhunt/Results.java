@@ -173,7 +173,7 @@ public class Results extends AppCompatActivity {
 
 
                         challengeNumber ++;
-                        String test = getFilesDir().toString()+"/stats";
+                        String test = getFilesDir().toString()+"stats";
                         BufferedReader in = null;
                         try {
                             in = new BufferedReader(new FileReader(test));
@@ -194,7 +194,7 @@ public class Results extends AppCompatActivity {
 
                         String[] parts = past.split(",");
                         parts[0]=(Integer.parseInt(parts[0])+bestf)+"";
-                        parts[1]=(Integer.parseInt(parts[1])+bestf)+"";
+                        parts[1]=Math.max(Integer.parseInt(parts[1]),bestf)+"";
                         parts[2]=(Integer.parseInt(parts[2])+1)+"";
                         if(bestf==1000)
                             parts[3]=(Integer.parseInt(parts[3])+1)+"";

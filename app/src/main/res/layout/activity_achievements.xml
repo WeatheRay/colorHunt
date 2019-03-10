@@ -25,7 +25,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/topscore_textview"
         android:layout_width="190dp"
         android:layout_height="39dp"
         android:layout_marginTop="20dp"
@@ -38,7 +38,7 @@
         app:layout_constraintTop_toBottomOf="@+id/progressBar2" />
 
     <TextView
-        android:id="@+id/points_testview2"
+        android:id="@+id/perfects_testview"
         android:layout_width="98dp"
         android:layout_height="28dp"
         android:layout_marginStart="8dp"
