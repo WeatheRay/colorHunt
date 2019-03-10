@@ -24,6 +24,7 @@ public class Results extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Challenge.chal.finish();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
         //TODO: create and set global variable targetcolor
