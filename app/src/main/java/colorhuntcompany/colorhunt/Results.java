@@ -98,6 +98,8 @@ public class Results extends AppCompatActivity {
         Bitmap b2 = Bitmap.createBitmap(1,1,Bitmap.Config.ARGB_8888);
         b2.eraseColor(colors.get(bestIndex));
         v2.setImageBitmap(b2);
+        findViewById(R.id.closest_imageview).setVisibility(View.VISIBLE);
+        findViewById(R.id.textView9).setVisibility(View.VISIBLE);
         //TODO: remove the hard coding here
         final int bestf = best;
         //TODO: Write a pass fail condition for a color being too far away or not
@@ -133,8 +135,7 @@ public class Results extends AppCompatActivity {
                     public void onFinish() {
                         // When timer is finished
                         // Execute your code here
-                        findViewById(R.id.closest_imageview).setVisibility(View.VISIBLE);
-                        findViewById(R.id.textView9).setVisibility(View.VISIBLE);
+
                         findViewById(R.id.textView10).setVisibility(View.VISIBLE);
                         TextView ta= findViewById(R.id.challenge_progress_textview);
                         ta.setVisibility(View.VISIBLE);
