@@ -28,6 +28,7 @@ public class Results extends AppCompatActivity {
     static int challengeScore = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Challenge.chal.finish();
 
         challengeNumber = challengeNumber%6;

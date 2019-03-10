@@ -79,6 +79,7 @@ public class Challenge extends AppCompatActivity {
         Bitmap mImageBitmap = BitmapFactory.decodeFile(getFilesDir().toString()+"image.jpeg");
         ImageView mImageView=findViewById(R.id.mImageView);
         mImageView.setImageBitmap(mImageBitmap);
+        loaded=0;
         startActivity(new Intent(Challenge.this, Results.class));
     }
 
