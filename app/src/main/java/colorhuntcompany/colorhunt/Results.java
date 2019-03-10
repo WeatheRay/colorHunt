@@ -1,6 +1,7 @@
 package colorhuntcompany.colorhunt;
 
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.CountDownTimer;
@@ -12,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Timer;
 
@@ -21,9 +24,17 @@ import static android.graphics.Color.red;
 
 
 public class Results extends AppCompatActivity {
-
+    static int challengeNumber =1;
+    static int challengeScore = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        challengeNumber = challengeNumber%6;
+        if(challengeNumber==0) {
+            challengeNumber++;
+            challengeScore=0;
+        }
+        Log.i("challenge num"," "+challengeNumber);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
         //TODO: create and set global variable targetcolor
@@ -39,11 +50,11 @@ public class Results extends AppCompatActivity {
 
     public ArrayList<Integer> ColorSearch(Bitmap orig)
     {
-        Bitmap img = Bitmap.createScaledBitmap(orig,5,5,true);
+        Bitmap img = Bitmap.createScaledBitmap(orig,10,10,true);
         ArrayList<Integer> colors = new ArrayList();
-        for (int i = 0; i<5; i++)
+        for (int i = 0; i<10; i++)
         {
-            for (int j = 0; j<5; j++)
+            for (int j = 0; j<10; j++)
             {
                 colors.add(img.getPixel(i,j));
             }
@@ -65,7 +76,7 @@ public class Results extends AppCompatActivity {
             int G = green(color);
             int B = blue(color);
             int score = (Math.abs(targetR-R)+Math.abs(targetB-B)+Math.abs(targetG-G));
-            scores.add((765-score)*1000/765);
+            scores.add(((Math.max((((765-score)*1000/765)-500),0)*2)));
         }
         Log.i("SCORES", scores.toString());
         int best = 0;
@@ -78,6 +89,10 @@ public class Results extends AppCompatActivity {
                 bestIndex = i;
             }
         }
+        ImageView v2 =findViewById(R.id.closest_imageview);
+        Bitmap b2 = Bitmap.createBitmap(1,1,Bitmap.Config.ARGB_8888);
+        b2.eraseColor(colors.get(bestIndex));
+        v2.setImageBitmap(b2);
         //TODO: remove the hard coding here
         final int bestf = best;
         //TODO: Write a pass fail condition for a color being too far away or not
@@ -109,7 +124,45 @@ public class Results extends AppCompatActivity {
 
                 TextView t = findViewById(R.id.textView7);
                 t.setText(counted+"/1000");
+                new CountDownTimer(100, 100) {
+                    public void onFinish() {
+                        // When timer is finished
+                        // Execute your code here
+                        findViewById(R.id.closest_imageview).setVisibility(View.VISIBLE);
+                        findViewById(R.id.textView9).setVisibility(View.VISIBLE);
+                        findViewById(R.id.textView10).setVisibility(View.VISIBLE);
+                        TextView ta= findViewById(R.id.challenge_progress_textview);
+                        ta.setVisibility(View.VISIBLE);
+                        ta.setText(challengeNumber+"/5");
+                        challengeScore+= bestf;
+                        ta = findViewById(R.id.textView13);
+                        ta.setVisibility(View.VISIBLE);
+                        ta.setText(""+challengeScore);
+                        findViewById(R.id.textView12);
+                        if (challengeNumber!=5)
+                        {
+                            findViewById(R.id.next_color_button).setVisibility(View.VISIBLE);
 
+                        }
+                        else
+                        {
+                            findViewById(R.id.stats_button).setVisibility(View.VISIBLE);
+                            findViewById(R.id.play_again_button).setVisibility(View.VISIBLE);
+                            findViewById(R.id.open_home_button).setVisibility(View.VISIBLE);
+
+                        }
+
+
+
+
+                        challengeNumber ++;
+                    }
+
+                    public void onTick(long millisUntilFinished) {
+                        // millisUntilFinished    The amount of time until finished.
+
+                    }
+                }.start();
 
 
 
@@ -122,4 +175,21 @@ public class Results extends AppCompatActivity {
 
 
     }
+    public void clickNext(View name)
+    {
+        startActivity(new Intent(Results.this, Challenge.class));
+    }
+    public void clickHome(View name)
+    {
+        startActivity(new Intent(Results.this, MainActivity.class));
+    }
+    public void clickStats(View name)
+    {
+        startActivity(new Intent(Results.this, Achievements.class));
+    }
+    public void clickPlay(View name)
+    {
+        startActivity(new Intent(Results.this, Challenge.class));
+    }
+
 }
