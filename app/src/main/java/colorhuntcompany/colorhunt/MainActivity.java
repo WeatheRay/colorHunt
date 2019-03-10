@@ -15,7 +15,9 @@ public class MainActivity extends AppCompatActivity {
     public void challengeButton(View v){
             startActivity(new Intent(MainActivity.this, Challenge.class));
         }
-
+    public void statsButton(View v){
+        startActivity(new Intent(MainActivity.this, Achievements.class));
+    }
 
 
 

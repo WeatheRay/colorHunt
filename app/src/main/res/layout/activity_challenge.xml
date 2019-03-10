@@ -33,23 +33,31 @@
 
     <Button
         android:id="@+id/begin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="238dp"
+        android:layout_height="87dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:onClick="cameraButton"
         android:text="Begin"
-        tools:layout_editor_absoluteX="179dp"
-        tools:layout_editor_absoluteY="598dp" />
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mImageView" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="388dp"
+        android:layout_width="246dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="8dp"
-        android:text="This is the color you are looking for."
+        android:text="This is the color you are looking to take a picture of:"
         android:textAlignment="center"
         android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="125dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
