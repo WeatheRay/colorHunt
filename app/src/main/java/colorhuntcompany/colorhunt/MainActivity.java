@@ -9,6 +9,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 
 public class MainActivity extends AppCompatActivity {
     public static Activity fa;
@@ -35,7 +39,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //dispatchTakePictureIntent(1);
         // /data/user/0/colorhuntcompany.colorhunt/files
-        String test = getFilesDir().toString();
+        String test = getFilesDir().toString()+"/stats";
+        File file = new File(test);
+
+        //Create the file
+        try {
+            if (file.createNewFile()) {
+                System.out.println("New Text File is created!");
+            } else {
+                System.out.println("File already exists.");
+            }
+            //Write Content
+            FileWriter writer = new FileWriter(file);
+            writer.write("0,0,0,0");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

@@ -1,5 +1,6 @@
 package colorhuntcompany.colorhunt;
 
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -15,6 +16,15 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Timer;
 
@@ -161,6 +171,49 @@ public class Results extends AppCompatActivity {
 
 
                         challengeNumber ++;
+                        String test = getFilesDir().toString()+"/stats";
+                        BufferedReader in = null;
+                        try {
+                            in = new BufferedReader(new FileReader(test));
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        String past="0,0,0,0";
+                        try {
+                            past = in.readLine();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            in.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        String[] parts = past.split(",");
+                        parts[0]=(Integer.parseInt(parts[0])+bestf)+"";
+                        parts[1]=(Integer.parseInt(parts[1])+bestf)+"";
+                        parts[2]=(Integer.parseInt(parts[2])+1)+"";
+                        if(bestf==1000)
+                            parts[3]=(Integer.parseInt(parts[3])+1)+"";
+                        File archivo = null;
+                        FileWriter fr = null;
+                        try {
+                            archivo = new File(getFilesDir().toString()+"stats");
+                            fr = new FileWriter(archivo, true);
+
+                                fr.write(parts.toString());
+
+                        } catch (Exception e) {
+                            System.out.println("Error al escribir");
+                        } finally {
+                            try {
+                                fr.close();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
                     }
 
                     public void onTick(long millisUntilFinished) {
