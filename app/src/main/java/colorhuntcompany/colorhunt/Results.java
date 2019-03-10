@@ -28,6 +28,7 @@ public class Results extends AppCompatActivity {
     static int challengeScore = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Challenge.chal.finish();
 
         challengeNumber = challengeNumber%6;
         if(challengeNumber==0) {

@@ -1,5 +1,6 @@
 package colorhuntcompany.colorhunt;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -26,7 +27,7 @@ import android.graphics.Bitmap;
 import static android.graphics.Color.rgb;
 
 public class Challenge extends AppCompatActivity {
-
+    public static Activity chal;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     public void cameraButton(View v){
         dispatchTakePictureIntent(1);
@@ -89,7 +90,7 @@ public class Challenge extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         MainActivity.fa.finish();
-
+        chal = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_challenge);
         // /data/user/0/colorhuntcompany.colorhunt/files
