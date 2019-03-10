@@ -5,14 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Challenge"
+    android:background="#EDF5FF"
     android:screenOrientation="portrait">
 
     <ImageView
         android:id="@+id/mImageView"
-        android:layout_width="351dp"
-        android:layout_height="97dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="168dp"
+        android:layout_width="363dp"
+        android:layout_height="187dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
@@ -21,23 +26,30 @@
         android:id="@+id/challengeColor"
         android:layout_width="351dp"
         android:layout_height="97dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="388dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="invisible"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="304dp"
         tools:srcCompat="@tools:sample/avatars" />
 
     <Button
         android:id="@+id/begin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:onClick="cameraButton"
         android:text="Begin"
-        app:layout_constraintBottom_toTopOf="@+id/mImageView"
+        tools:layout_editor_absoluteX="179dp"
+        tools:layout_editor_absoluteY="598dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="388dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="This is the color you are looking for."
+        android:textAlignment="center"
+        android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="125dp" />
 
 </android.support.constraint.ConstraintLayout>
