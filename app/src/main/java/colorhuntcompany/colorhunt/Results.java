@@ -173,7 +173,7 @@ public class Results extends AppCompatActivity {
 
 
                         challengeNumber ++;
-                        String test = getFilesDir().toString()+"stats";
+                        String test = getFilesDir().toString()+"/stats";
                         BufferedReader in = null;
                         try {
                             in = new BufferedReader(new FileReader(test));
@@ -201,7 +201,7 @@ public class Results extends AppCompatActivity {
                         File archivo = null;
                         FileWriter fr = null;
                         try {
-                            archivo = new File(getFilesDir().toString()+"stats");
+                            archivo = new File(getFilesDir().toString()+"/stats");
                             fr = new FileWriter(archivo, true);
 
                                 fr.write(parts.toString());
